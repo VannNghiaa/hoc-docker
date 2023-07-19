@@ -1,0 +1,70 @@
+IMAGE:
+    // để tải 1 repo trên github thì dùng lệnh gì: git clone | ở docker để tải 1 image về thì dùng docker pull
+    1 .docker pull <ten image>:tag  | tag: tương ứng với version, nếu không được chỉ định thì mặc định tag là latest (mới nhất)
+
+    // để xem các image cần tải thì có 2 cách:
+        1. vào trang docker hub xem (ưu tiên)
+        2. sử dụng lệnh docker search để xem
+
+    ví dụ, muốn tải hello-world về máy thông qua Docker thì vào trang copy lệnh của nó
+
+    2. docker images ~ docker image ls: dùng để kiểm tra xem trong máy đang có những image nào
+
+    // mỗi image đều có tên và ID. 
+    // Để xóa 1 image thì cần chỉ định tên or ID (or 1 phần ID miễn có thể phân biệt các image với nhau) của image 
+
+    3. docker image rm <ten image>:tag/<ID image>
+    4. docker image prune : dùng để xóa tất cả các image trong máy
+
+Container:
+    // làm gì thì làm phải kiểm tra tên và tag của image trước khi pull về 
+
+    1. docker run <ten image>:tag / <ID image> : dùng để tạo ra 1 container từ image  
+    // trường hợp image không có sẵn trong máy thì docker sẽ pull từ docker hub về máy là chạy nó
+
+    2. docker ps: dùng để xem có những container nào DANG CHAY
+    3. docker ps -a: dùng để xem tất cả container trong máy
+
+    // 1 container luôn có ID và name
+
+    4. docker start <name>/<ID>: dùng để khởi động lại container
+    5. docker stop <name>/<ID>: dùng để tạm dừng container
+
+    6. docker rm <tên>/<ID> : dùng để xóa container
+
+
+    7. docker run [OPTION] <ten image>:tag/<ID image>
+        [OPTION]:
+            --name: dùng để đặt tên cho container
+            -p: dùng để kết nối port của container và máy tính
+            -v: dùng để mount (kếu nối) tới volume (docker volume là ổ đĩa dùng để lưu trữ dữ liệu của container)
+            -d: dùng để chạy ngầm container (khi run docker nó sẽ xổ ra 1 loạt log khi dùng -d nó sẽ ẩn đi mấy cái log đó)
+            -e: dùng để thêm cái biến môi trường cho container
+            // mấy cái tao hay dùng nào nhớ thêm thì tao ghi vào tiếp
+
+    /*  thực hành
+
+        1. tải image nginx 
+        2. tạo container của nó thông qua lệnh `docker run ` 
+            yêu cầu: 
+                đặt tên cho container là myNginx 
+                kết nối với nó thông qua port 8080:80
+                chạy ngầm container với -d
+             => (docker run --name myNgnix -p 8080:80 -d nginx)
+        2. stop container nginx
+
+        CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS     NAMES
+        556f867e14a1   nginx:latest   "/docker-entrypoint.…"   37 seconds ago   Up 35 seconds   80/tcp    reverent_lovelace
+
+        - STATUS: là trạng thái của container (up 35s là chạy được 35s)
+        - PORT: là cổng kết nối giữa máy local và container
+            LƯU Ý: container là 1 môi trường độc lập và kép kín để có thể kết nối vào container thì phải thông qua port
+            hiện tại container này đang chạy trên port 80 thông qua giao thức TCP để kết nối vào nó thì gõ localhost:80
+        - NAME: tên của container nếu không được chỉ định thì tên sẽ tạo ra ngẫu nhiên
+
+    */
+
+ok hôm nay học nhiêu đây thôi
+thực hành lại cho nhớ
+buổi sau tao sẽ nói sơ qua về -v và -e và cách viết Dockerfile
+ok, xem t up len git di ok

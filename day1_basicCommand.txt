@@ -64,7 +64,4 @@ Container:
 
     */
 
-ok hôm nay học nhiêu đây thôi
-thực hành lại cho nhớ
 buổi sau tao sẽ nói sơ qua về -v và -e và cách viết Dockerfile
-ok, xem t up len git di ok
